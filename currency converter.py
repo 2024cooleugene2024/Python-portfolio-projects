@@ -1,11 +1,11 @@
-import requests
-import os
 import json
+import os
 import time
 from tkinter import *
 from tkinter import messagebox, ttk
 from tkinter.filedialog import asksaveasfile
-from PIL import Image, ImageTk  # Требуется библиотека Pillow для работы с изображениями
+
+import requests
 
 # Файл для хранения курсов валют (для кэширования)
 CACHE_FILE = "currency_cache.json"
@@ -22,6 +22,11 @@ UPDATE_INTERVALS = {
 
 # Функция проверки сети
 def check_network():
+    """
+    :rtype: bool
+    :return: Returns True if a successful connection is made to "https://www.google.com" within the timeout period.
+    Otherwise, returns False if a ConnectionError occurs.
+    """
     try:
         requests.get("https://www.google.com", timeout=3)
         return True
@@ -31,12 +36,23 @@ def check_network():
 
 # Функция для кэширования данных о курсах валют
 def cache_exchange_rates(data: dict):
+    """
+    :param data: A dictionary containing exchange rate data where keys are currency codes and values are exchange rates.
+    :return: None.
+    This function writes the exchange rate data to a cache file named CACHE_FILE in JSON format.
+    Along with a timestamp of when the data was cached.
+    """
     with open(CACHE_FILE, "w") as f:
         json.dump({"rates": data, "timestamp": time.time()}, f)
 
 
 # Функция для загрузки кэшированных данных
 def load_cached_rates():
+    """
+    Load exchange rates from a cached file if it exists and is still valid.
+
+    :return: Cached exchange rates if available and valid, otherwise None.
+    """
     if os.path.exists(CACHE_FILE):
         with open(CACHE_FILE) as f:
             cached_data = json.load(f)
@@ -47,6 +63,10 @@ def load_cached_rates():
 
 # Функция для получения курсов валют (с кэшированием и оффлайн-режимом)
 def get_exchange_rates(from_currency: str):
+    """
+    :param from_currency: The base currency for which to retrieve exchange rates.
+    :return: A dictionary of exchange rates with currency codes as keys and rates as values, or None if an error occurs.
+    """
     cached_rates = load_cached_rates()
     if cached_rates:
         return cached_rates
@@ -68,6 +88,13 @@ def get_exchange_rates(from_currency: str):
 
 # Функция конвертации валюты
 def convert_currency():
+    """
+    Converts an amount from one currency to another based on exchange rates obtained from an external service.
+    Handles various error scenarios including non-numeric input and unsuccessful retrieval of exchange rates.
+    Displays the conversion result and updates the conversion history.
+
+    :return: None
+    """
     from_currency = from_currency_combobox.get()
     to_currency = to_currency_combobox.get()
     try:
@@ -90,12 +117,29 @@ def convert_currency():
 
 # Добавление конверсии в историю
 def add_to_history(amount, from_currency, to_currency, result):
+    """
+    :param amount: The amount of currency to be converted.
+    :param from_currency: The original currency code of the amount.
+    :param to_currency: The target currency code for the conversion.
+    :param result: The result of the currency conversion.
+    :return: None
+    """
     conversion = f"{amount:.2f} {from_currency} = {result:.2f} {to_currency}"
     history_listbox.insert(END, conversion)
 
 
 # Сохранение истории в файл
 def save_history():
+    """
+    Opens a save file dialog, allowing the user to save the contents of a ListBox widget to a text file.
+
+    The function prompts the user with a file save dialog to choose where to save the contents of the history_listbox.
+    If the user selects a file, the function retrieves the contents of the ListBox.
+    Joins the items with a newline character, and writes the resulting string to the selected file.
+    The file is then closed.
+
+    :return: None
+    """
     save_file = asksaveasfile(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
     if save_file:
         history = history_listbox.get(0, END)
@@ -105,6 +149,10 @@ def save_history():
 
 # Обновление курса валют по отношению к базовой валюте (USD)
 def update_exchange_rates(rates_label=None):
+    """
+    :param rates_label: A tkinter label widget to display error messages if the exchange rates cannot be fetched.
+    :return: None. The function updates the displayed exchange rates in the GUI.
+    """
     rates = get_exchange_rates("USD")
     if rates:
         rates_display.delete(*rates_display.get_children())
