@@ -2,9 +2,9 @@ import random
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
-import pygame  # для звуковых эффектов
+import pygame  # for sound effects
 
-# Инициализация звуков
+# Sound initialization
 pygame.mixer.init()
 WIN_SOUND = pygame.mixer.Sound("win.wav")
 LOSE_SOUND = pygame.mixer.Sound("lose.wav")
@@ -87,7 +87,7 @@ class GuessNumberGame:
         play_sound(self, result):
             Plays a sound based on the result (win or lose).
     """
-    EASY, MEDIUM, HARD = "Легкий (1-10)", "Средний (1-100)", "Сложный (1-1000)"
+    EASY, MEDIUM, HARD = "Easy (1-10)", "Medium (1-100)", "Hard (1-1000)"
 
     def __init__(self, root_):
         self.check_button = None
@@ -104,7 +104,7 @@ class GuessNumberGame:
         self.level_label = None
         self.style = None
         self.root = root_
-        self.root.title("Угадай число")
+        self.root.title("Guess the Number")
         self.score = 0
         self.secret_number = None
         self.max_number = 100
@@ -124,31 +124,31 @@ class GuessNumberGame:
         self.create_check_button()
 
     def create_difficulty_selector(self):
-        self.level_label = ttk.Label(self.root, text="Выберите уровень сложности:")
+        self.level_label = ttk.Label(self.root, text="Select Difficulty Level:")
         self.level_label.pack(pady=10)
         self.difficulty_combobox.current(1)
         self.difficulty_combobox.pack(pady=5)
 
     def create_entry_field(self):
-        self.entry_label = ttk.Label(self.root, text="Введите число:")
+        self.entry_label = ttk.Label(self.root, text="Enter a number:")
         self.entry_label.pack(pady=10)
         self.number_entry = ttk.Entry(self.root)
         self.number_entry.pack(pady=5)
 
     def create_start_button(self):
-        self.start_button = ttk.Button(self.root, text="Начать игру", command=self.start_game)
+        self.start_button = ttk.Button(self.root, text="Start Game", command=self.start_game)
         self.start_button.pack(pady=10)
 
     def create_timer_label(self):
-        self.timer_label = ttk.Label(self.root, text="Время: 10 секунд")
+        self.timer_label = ttk.Label(self.root, text="Time: 10 seconds")
         self.timer_label.pack(pady=10)
 
     def create_score_label(self):
-        self.score_label = ttk.Label(self.root, text=f"Очки: {self.score}")
+        self.score_label = ttk.Label(self.root, text=f"Score: {self.score}")
         self.score_label.pack(pady=10)
 
     def create_check_button(self):
-        self.check_button = ttk.Button(self.root, text="Проверить", command=self.check_number, state=tk.DISABLED)
+        self.check_button = ttk.Button(self.root, text="Check", command=self.check_number, state=tk.DISABLED)
         self.check_button.pack(pady=10)
 
     def start_game(self):
@@ -186,22 +186,22 @@ class GuessNumberGame:
         try:
             guess = int(self.number_entry.get())
         except ValueError:
-            messagebox.showerror("Ошибка", "Введите правильное число!")
+            messagebox.showerror("Error", "Please enter a valid number!")
             return
         if guess == self.secret_number:
             self.score += 1
             self.update_score()
             play_sound("win")
-            messagebox.showinfo("Победа", "Вы угадали число!")
+            messagebox.showinfo("Victory", "You guessed the number!")
             self.generate_secret_number()
         else:
-            messagebox.showinfo("Неправильно", "Неправильное число! Попробуйте снова.")
+            messagebox.showinfo("Incorrect", "Incorrect number! Try again.")
 
     def update_score(self):
-        self.score_label.config(text=f"Очки: {self.score}")
+        self.score_label.config(text=f"Score: {self.score}")
 
     def update_timer_label(self):
-        self.timer_label.config(text=f"Время: {self.remaining_time} секунд")
+        self.timer_label.config(text=f"Time: {self.remaining_time} seconds")
 
     def start_timer(self):
         if self.timer_running:
@@ -217,12 +217,10 @@ class GuessNumberGame:
         self.check_button.config(state=tk.DISABLED)
         self.start_button.config(state=tk.NORMAL)
         play_sound("lose")
-        messagebox.showinfo("Время вышло", f"Вы не успели! Загаданное число было {self.secret_number}")
+        messagebox.showinfo("Time's Up", f"You ran out of time! The number was {self.secret_number}")
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     game = GuessNumberGame(root)
     root.mainloop()
-
-
