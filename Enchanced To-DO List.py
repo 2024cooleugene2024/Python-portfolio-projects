@@ -1,5 +1,5 @@
 import sqlite3
-import os
+
 
 # Database initialization
 def init_db():
@@ -22,12 +22,25 @@ def init_db():
 init_db()
 
 import tkinter as tk
-from tkinter import ttk, messagebox
-import datetime
+from tkinter import ttk
 
+
+# noinspection PyArgumentList
 class ToDoApp:
-    def __init__(self, root):
-        self.root = root
+    def __init__(self, root_):
+        self.scrollbar = None
+        self.tree = None
+        self.add_button = None
+        self.category_entry = None
+        self.category_label = None
+        self.deadline_entry = None
+        self.deadline_label = None
+        self.desc_entry = None
+        self.title_entry = None
+        self.title_label = None
+        self.frame = None
+        self.desc_label = None
+        self.root = root_
         self.root.title("To-Do List")
 
         # Setting up the main interface
