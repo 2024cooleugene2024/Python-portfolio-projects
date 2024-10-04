@@ -168,10 +168,6 @@ root.title("Конвертер валют с кэшированием")
 root.geometry("430x690")
 root.resizable(False, False)
 
-# Фоновое изображение (в зависимости от выбранной валюты)
-currency_label = Label(root)
-currency_label.pack(side=TOP, fill=BOTH, expand=True)
-
 # Список валют
 currencies = ["USD", "EUR", "RUB", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY"]
 
@@ -192,11 +188,11 @@ amount_entry.pack(pady=5)
 
 # Кнопка для конвертации
 convert_button = Button(root, text="Конвертировать", command=convert_currency)
-convert_button.pack(pady=10)
+convert_button.pack(pady=5)
 
 # Результат конвертации
 result_label = Label(root)
-result_label.pack(pady=10)
+result_label.pack(pady=5)
 
 # История конверсий
 Label(root, text="История конверсий:").pack(pady=5)
