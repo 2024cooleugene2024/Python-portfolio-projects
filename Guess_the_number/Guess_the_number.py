@@ -6,8 +6,8 @@ import pygame  # for sound effects
 
 # Sound initialization
 pygame.mixer.init()
-WIN_SOUND = pygame.mixer.Sound("win.wav")
-LOSE_SOUND = pygame.mixer.Sound("lose.wav")
+WIN_SOUND = pygame.mixer.Sound("../win.wav")
+LOSE_SOUND = pygame.mixer.Sound("../lose.wav")
 
 
 def play_sound(result):

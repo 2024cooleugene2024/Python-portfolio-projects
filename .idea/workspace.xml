@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f68063a-4da7-44ec-87a9-dfda703bc415" name="Changes" comment="Local to GitHub">
+      <change afterPath="$PROJECT_DIR$/.idea/Python-portfolio-projects.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/contacts.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/static/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/templates/add_contact.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/templates/edit_contact.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contact_Manager/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Guess_the_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/Guess_the_number/Guess_the_number.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parcing_web.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parcing_web/Parcing_web.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pass_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pass_generator/Pass_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/To-DO_List.py" beforeDir="false" afterPath="$PROJECT_DIR$/To_do_list/To-DO_List.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Word_processing_program.py" beforeDir="false" afterPath="$PROJECT_DIR$/Word_proc_prog/Word_processing_program.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator_top.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator_top/calculator_top.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency_converter.py" beforeDir="false" afterPath="$PROJECT_DIR$/currency_converter/currency_converter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/telebotus.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bot/telebotus.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;2024cooleugene2024&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/2024cooleugene2024/Python-portfolio-projects.git&quot;,
+    &quot;accountId&quot;: &quot;24c783a7-b510-4313-8d34-4b52182f665b&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2mwBLwuoRuSvnhbDWPLEWtLdn5n" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.111.executor": "Run",
+    "Python.123.executor": "Run",
+    "Python.Calculator_1.executor": "Run",
+    "Python.Currency converter.executor": "Run",
+    "Python.Guess the number.executor": "Run",
+    "Python.Guess_the_number (1).executor": "Run",
+    "Python.Guess_the_number.executor": "Run",
+    "Python.Manager_cont.executor": "Run",
+    "Python.Parcing_web (1).executor": "Run",
+    "Python.Parcing_web.executor": "Run",
+    "Python.Pass_generaotor.executor": "Run",
+    "Python.Pass_generator.executor": "Run",
+    "Python.To-DO_List (1).executor": "Run",
+    "Python.To-DO_List.executor": "Run",
+    "Python.Word_processing_program.executor": "Run",
+    "Python.app (1).executor": "Run",
+    "Python.app (2).executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.calc_1.executor": "Run",
+    "Python.calculator.executor": "Run",
+    "Python.currency converter.executor": "Run",
+    "Python.currency_converter.executor": "Run",
+    "Python.telebot.executor": "Run",
+    "Python.telebotus.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python_data_univer_projects\Python-portfolio-projects\Contacts_manager" />
+      <recent name="D:\Python_data_univer_projects\Python-portfolio-projects" />
+      <recent name="D:\Python_data_univer_projects\Python-portfolio-projects\Word_proc_prog" />
+      <recent name="D:\Python_data_univer_projects\Python-portfolio-projects\To_do_list" />
+      <recent name="D:\Python_data_univer_projects\Python-portfolio-projects\Telegram_bot" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="To-DO_List (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python-portfolio-projects" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/To_do_list" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/To_do_list/To-DO_List.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="To-DO_List" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python-portfolio-projects" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Python_data_univer_projects\Python-portfolio-projects\To_do_list\To-DO_List.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python-portfolio-projects" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Contacts_manager" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Contacts_manager/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python-portfolio-projects" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Contact_Manager" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Contact_Manager/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python-portfolio-projects" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Contacts_manager" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Python_data_univer_projects\Python-portfolio-projects\Contacts_manager\app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python-portfolio-projects" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Python_data_univer_projects\Python-portfolio-projects\Contacts_manager\app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app (2)" />
+        <item itemvalue="Python.app (1)" />
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.app (1)" />
+        <item itemvalue="Python.To-DO_List (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f68063a-4da7-44ec-87a9-dfda703bc415" name="Changes" comment="" />
+      <created>1727977706759</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727977706759</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1727979591819</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727979591819</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1727981428148</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727981428148</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1727982293639</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727982293639</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1727989089376</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727989089376</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1727989450477</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727989450477</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1727989717050</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727989717050</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728060297329</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728060297329</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728060427546</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728060427546</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728060559053</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728060559053</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728060741169</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728060741169</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728063346442</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728063346442</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728063810728</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728063810728</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728148239606</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728148239606</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728149910711</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728149910711</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Local to GitHub">
+      <option name="closed" value="true" />
+      <created>1728150145557</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728150145557</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Local to GitHub" />
+    <option name="LAST_COMMIT_MESSAGE" value="Local to GitHub" />
+  </component>
+</project>

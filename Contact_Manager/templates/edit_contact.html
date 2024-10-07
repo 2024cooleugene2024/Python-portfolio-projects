@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Contact</h2>
+<form method="post">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" value="{{ contact.name }}">
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone" type="text" value="{{ contact.phone }}">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="text" value="{{ contact.email }}">
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
