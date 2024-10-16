@@ -6,9 +6,20 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import threading
 import queue
+from concurrent.futures import ThreadPoolExecutor
 
 ctk.set_appearance_mode("System")  # Внешний вид: 'System', 'Light' или 'Dark'
 ctk.set_default_color_theme("blue")  # Цветовая тема: 'blue', 'green' или 'dark-blue'
+
+
+def copy_file(source, target, buffer_size=1024 * 1024):
+    """Copy file in chunks to reduce memory usage."""
+    with open(source, 'rb') as src, open(target, 'wb') as tgt:
+        while True:
+            chunk = src.read(buffer_size)
+            if not chunk:
+                break
+            tgt.write(chunk)
 
 
 class SyncHandler(FileSystemEventHandler):
@@ -44,8 +55,9 @@ class SyncHandler(FileSystemEventHandler):
                 for file in files:
                     source_file = os.path.join(root, file)
                     target_file = os.path.join(target_dir, file)
-                    shutil.copy2(source_file, target_file)
+                    copy_file(source_file, target_file)  # Используем поблочное копирование
                     self.log_callback(f"Copied: {source_file} -> {target_file}")
+                    os.remove(source_file)  # Удаляем временные файлы, если нужно
 
     def backup_deleted_file(self, file_path):
         """Back up a deleted file or directory by moving it to the backup folder."""
@@ -128,11 +140,11 @@ class App(ctk.CTk):
 
     def process_queue(self):
         """Process the messages from the queue and update the UI."""
-        while not self.queue.empty():
+        if not self.queue.empty():
             message = self.queue.get()
             self.log_display.insert("end", message + "\n")
             self.log_display.see("end")
-        self.after(100, self.process_queue)
+        self.after(100, self.process_queue)  # Не обновляем интерфейс постоянно
 
     def select_source_folder(self):
         """Open a dialog to select the source folder."""
@@ -162,7 +174,11 @@ class App(ctk.CTk):
 
         event_handler = SyncHandler(self.source_folder, self.target_folder, self.backup_folder, self.log_callback)
         self.observer = Observer()
-        self.observer.schedule(event_handler, self.source_folder, recursive=True)
+
+        # Запуск наблюдателя в пуле потоков
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            executor.submit(self.observer.schedule, event_handler, self.source_folder, recursive=True)
+
         threading.Thread(target=self.run_observer, daemon=True).start()
 
         self.status_label.configure(text="Monitoring changes...")
