@@ -5,9 +5,11 @@ from tkinter import filedialog, messagebox
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import threading
+import queue
 
 ctk.set_appearance_mode("System")  # Внешний вид: 'System', 'Light' или 'Dark'
 ctk.set_default_color_theme("blue")  # Цветовая тема: 'blue', 'green' или 'dark-blue'
+
 
 class SyncHandler(FileSystemEventHandler):
     """Handles file system events to synchronize folders and backup deleted files."""
@@ -32,7 +34,6 @@ class SyncHandler(FileSystemEventHandler):
 
     def sync_folders(self):
         """Synchronize the source and target folders."""
-        # Copy the contents of the source folder to the target folder
         if os.path.exists(self.source_folder):
             for root, dirs, files in os.walk(self.source_folder):
                 relative_path = os.path.relpath(root, self.source_folder)
@@ -40,7 +41,6 @@ class SyncHandler(FileSystemEventHandler):
                 if not os.path.exists(target_dir):
                     os.makedirs(target_dir)
 
-                # Copy each file to the target directory
                 for file in files:
                     source_file = os.path.join(root, file)
                     target_file = os.path.join(target_dir, file)
@@ -55,6 +55,7 @@ class SyncHandler(FileSystemEventHandler):
         file_name = os.path.basename(file_path)
         backup_file_path = os.path.join(self.backup_folder, file_name)
 
+        # Проверяем, существует ли файл перед перемещением
         if os.path.exists(file_path):
             shutil.move(file_path, backup_file_path)
             self.log_callback(f"File backed up: {file_path} -> {backup_file_path}")
@@ -78,6 +79,7 @@ class App(ctk.CTk):
         self.backup_folder = ""
         self.observer = None
         self.is_syncing = False
+        self.queue = queue.Queue()  # Очередь для передачи данных между потоками
 
         # Create and pack GUI elements
         self.label = ctk.CTkLabel(self, text="Select folders to synchronize:", font=("Arial", 16))
@@ -98,16 +100,17 @@ class App(ctk.CTk):
         self.stop_button = ctk.CTkButton(self, text="Stop Synchronization", command=self.stop_sync, state="disabled")
         self.stop_button.pack(pady=5)
 
-        # Textbox to show selected folders
         self.folder_display = ctk.CTkTextbox(self, width=400, height=80)
         self.folder_display.pack(pady=10)
 
-        # Textbox for synchronization log
         self.log_display = ctk.CTkTextbox(self, width=400, height=150)
         self.log_display.pack(pady=10)
 
         self.status_label = ctk.CTkLabel(self, text="", font=("Arial", 12))
         self.status_label.pack(pady=10)
+
+        # Запуск обновления интерфейса каждые 100 мс для обработки сообщений
+        self.after(100, self.process_queue)
 
     def update_folder_display(self):
         """Update the textbox to show the selected folders."""
@@ -121,8 +124,15 @@ class App(ctk.CTk):
 
     def log_callback(self, message):
         """Callback to update the log display."""
-        self.log_display.insert("end", message + "\n")
-        self.log_display.see("end")
+        self.queue.put(message)  # Добавляем сообщение в очередь
+
+    def process_queue(self):
+        """Process the messages from the queue and update the UI."""
+        while not self.queue.empty():
+            message = self.queue.get()
+            self.log_display.insert("end", message + "\n")
+            self.log_display.see("end")
+        self.after(100, self.process_queue)
 
     def select_source_folder(self):
         """Open a dialog to select the source folder."""
@@ -162,7 +172,7 @@ class App(ctk.CTk):
         self.observer.start()
         try:
             while self.is_syncing:
-                self.update()
+                pass
         except KeyboardInterrupt:
             self.observer.stop()
 
@@ -177,7 +187,7 @@ class App(ctk.CTk):
         self.stop_button.configure(state="disabled")
         self.status_label.configure(text="Stopped monitoring.")
 
-# Run the application
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()
