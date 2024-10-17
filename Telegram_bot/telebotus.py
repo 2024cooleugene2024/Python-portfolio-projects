@@ -10,13 +10,14 @@ from threading import Thread
 import logging
 import traceback
 from datetime import datetime, timedelta
+import asyncio
 
-# Бот токен и ID канала и админа
-TOKEN = '7699074411:AAHlsR_ZOlW9rPMwAzZIpTPIk4x_1vzsK3w'
+# Bot token and channel IDs
+TOKEN = '7699074411:AAHlsR_ZOlW9rPMwAzZIpTPIk4x_1vzsK3w'  # Replace with your bot token
 CHAT_ID = 'Community_Python'
 ADMIN_CHAT_ID = '@cooleugene2012'
 
-# Настраиваем логирование
+# Logging setup
 LOG_FILE = 'bot_log.txt'
 logging.basicConfig(
     filename=LOG_FILE,
@@ -24,7 +25,7 @@ logging.basicConfig(
     format='%(asctime)s - %(message)s'
 )
 
-# Настройки количества публикаций и времени
+# Publication settings
 publications_settings = {
     'videos_per_day': 3,
     'articles_per_day': 3,
@@ -32,23 +33,24 @@ publications_settings = {
 }
 
 schedule_settings = {
-    'time': '09:00',  # Время публикации по умолчанию
-    'paused': False,  # Флаг приостановки публикаций
-    'days': ['Monday', 'Wednesday', 'Friday'],  # Дни публикаций по умолчанию
-    'delete_after_days': 7,  # Количество дней, через которые публикации будут удаляться
-    'repeat_interval_hours': 24  # Интервал повторных публикаций в часах
+    'time': '09:00',
+    'paused': False,
+    'days': ['Monday', 'Wednesday', 'Friday'],
+    'delete_after_days': 7,
+    'repeat_interval_hours': 24
 }
 
-last_publication_date = None  # Дата последней успешной публикации
-published_materials = {}  # Хранение опубликованных материалов для последующего удаления
+last_publication_date = None
+published_materials = {}
 
-# Создаем экземпляр бота
+# Create bot instance
 bot = telegram.Bot(token=TOKEN)
 
-# Хранение материалов для ручной проверки
+# Storage for materials pending approval
 pending_materials = {}
 
-# Функция для проверки лицензий
+
+# Function to check licenses
 def check_license(material_type, license_info):
     if material_type == 'video':
         return license_info == 'creativeCommon'
@@ -56,10 +58,11 @@ def check_license(material_type, license_info):
         return 'creativecommons' in license_info.lower() or 'mit' in license_info.lower() or 'apache' in license_info.lower()
     return False
 
-# Основная функция для скрапинга сайтов с обработкой ошибок и проверкой лицензий
+
+# Main function for scraping sites with error handling and license checks
 def scrape_python_materials():
     materials = {'videos': [], 'articles': [], 'books': []}
-    youtube_api_key = 'AIzaSyAe3h7vlN7I4SiAQVPnqXUk_52HTmH0lSI'  # Замените на ваш API ключ
+    youtube_api_key = 'YOUR_YOUTUBE_API_KEY_HERE'  # Replace with your API key
     youtube_search_url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults={publications_settings['videos_per_day']}&q=python&key={youtube_api_key}"
 
     try:
@@ -75,7 +78,7 @@ def scrape_python_materials():
             if check_license('video', video_data['license']):
                 materials['videos'].append(video_data)
     except requests.RequestException as e:
-        logging.error(f"Ошибка при запросе видео: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error fetching videos: {e}\n{traceback.format_exc()}")
 
     medium_url = "https://medium.com/tag/python"
     try:
@@ -92,9 +95,9 @@ def scrape_python_materials():
             if check_license('article', article_data['license']):
                 materials['articles'].append(article_data)
     except requests.RequestException as e:
-        logging.error(f"Ошибка при запросе статей с Medium: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error fetching articles from Medium: {e}\n{traceback.format_exc()}")
 
-    book_url = "https://codelibrary.info/books/python"  # Замените на реальный URL
+    book_url = "https://codelibrary.info/books/python"  # Replace with the actual URL
     try:
         response = requests.get(book_url)
         response.raise_for_status()
@@ -109,11 +112,12 @@ def scrape_python_materials():
             if check_license('book', book_data['license']):
                 materials['books'].append(book_data)
     except requests.RequestException as e:
-        logging.error(f"Ошибка при запросе книг: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error fetching books: {e}\n{traceback.format_exc()}")
 
     return materials
 
-# Функция для отправки материалов админу на проверку
+
+# Function to send materials for approval
 def send_materials_for_approval(materials):
     global pending_materials
     message = "Найдены материалы по Python, ожидающие вашей проверки:\n\n"
@@ -136,9 +140,10 @@ def send_materials_for_approval(materials):
         bot.send_message(chat_id=ADMIN_CHAT_ID, text="Используйте /approve для публикации или /reject для отклонения.")
         logging.info("Материалы отправлены админу на проверку.")
     except telegram.error.TelegramError as e:
-        logging.error(f"Ошибка отправки сообщения админу: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error sending message to admin: {e}\n{traceback.format_exc()}")
 
-# Функция для публикации материалов
+
+# Function to publish materials
 def post_to_telegram():
     global pending_materials, last_publication_date, published_materials
     materials = pending_materials
@@ -158,35 +163,39 @@ def post_to_telegram():
 
     try:
         bot.send_message(chat_id=CHAT_ID, text=message)
-        logging.info("Материалы опубликованы в Telegram.")
-        last_publication_date = datetime.now()  # Обновляем дату последней публикации
-        published_materials[last_publication_date] = materials  # Сохраняем опубликованные материалы с датой публикации
+        logging.info("Materials published in Telegram.")
+        last_publication_date = datetime.now()
+        published_materials[last_publication_date] = materials
     except telegram.error.TelegramError as e:
-        logging.error(f"Ошибка отправки сообщения в Telegram: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error sending message to Telegram: {e}\n{traceback.format_exc()}")
 
-# Команда для одобрения публикации
+
+# Command to approve publication
 async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Материалы одобрены и будут опубликованы.")
-    logging.info("Материалы одобрены администратором.")
+    logging.info("Materials approved by admin.")
     post_to_telegram()
 
-# Команда для отклонения публикации
+
+# Command to reject publication
 async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global pending_materials
     pending_materials = {}
     await update.message.reply_text("Материалы отклонены и не будут опубликованы.")
-    logging.info("Материалы отклонены администратором.")
+    logging.info("Materials rejected by admin.")
 
-# Команда для получения лог-файла
+
+# Command to get log file
 async def get_log_file(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         with open(LOG_FILE, 'rb') as log_file:
             await bot.send_document(chat_id=ADMIN_CHAT_ID, document=log_file)
-        logging.info("Лог-файл отправлен админу.")
+        logging.info("Log file sent to admin.")
     except Exception as e:
-        logging.error(f"Ошибка при отправке лог-файла: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error sending log file: {e}\n{traceback.format_exc()}")
 
-# Команда для изменения количества публикаций
+
+# Command to change publication settings
 async def set_publications(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global publications_settings
     try:
@@ -195,79 +204,41 @@ async def set_publications(update: Update, context: ContextTypes.DEFAULT_TYPE):
         publications_settings['articles_per_day'] = int(args[1])
         publications_settings['books_per_day'] = int(args[2])
         await update.message.reply_text(
-            f"Настройки публикаций обновлены:\nВидео: {publications_settings['videos_per_day']}, Статьи: {publications_settings['articles_per_day']}, Книги: {publications_settings['books_per_day']}")
-        logging.info(f"Обновлены настройки публикаций: {publications_settings}")
+            f"Настройки публикации обновлены:\n"
+            f"Видео в день: {publications_settings['videos_per_day']}\n"
+            f"Статьи в день: {publications_settings['articles_per_day']}\n"
+            f"Книги в день: {publications_settings['books_per_day']}"
+        )
+        logging.info("Publication settings updated.")
     except (IndexError, ValueError):
-        await update.message.reply_text("Пожалуйста, укажите три числа для видео, статей и книг.")
+        await update.message.reply_text("Пожалуйста, укажите количество видео, статей и книг через пробел.")
+        logging.error("Error updating publication settings.")
 
-# Команда для установки времени публикаций
-async def set_schedule(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    global schedule_settings
-    try:
-        schedule_settings['time'] = context.args[0]
-        await update.message.reply_text(f"Время публикации обновлено на {schedule_settings['time']}.")
-        logging.info(f"Время публикации обновлено на {schedule_settings['time']}.")
-    except IndexError:
-        await update.message.reply_text("Пожалуйста, укажите время в формате HH:MM.")
 
-# Функция для отчета о публикациях и удалениях
-async def report_publications_and_deletions(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    current_time = datetime.now()
-    message = "Отчёт о публикациях и удалённых материалах:\n\n"
-
-    if published_materials:
-        message += "Опубликованные материалы:\n"
-        for pub_date, materials in published_materials.items():
-            message += f"\nПубликации от {pub_date.strftime('%Y-%m-%d %H:%M:%S')}:\n"
-            message += "Видео:\n"
-            for video in materials['videos']:
-                message += f"{video['title']}: {video['url']} (Лицензия: {video['license']})\n"
-            message += "Статьи:\n"
-            for article in materials['articles']:
-                message += f"{article['title']}: {article['url']} (Лицензия: {article['license']})\n"
-            message += "Книги:\n"
-            for book in materials['books']:
-                message += f"{book['title']}: {book['url']} (Лицензия: {book['license']})\n"
-    else:
-        message += "Опубликованных материалов нет.\n"
-
-    message += "\nУдалённые материалы:\n"
-    for pub_date in list(published_materials.keys()):
-        if current_time - pub_date > timedelta(days=schedule_settings['delete_after_days']):
-            materials = published_materials[pub_date]
-            message += f"\nМатериалы от {pub_date.strftime('%Y-%m-%d %H:%M:%S')}:\n"
-            # Здесь добавьте логику для добавления информации об удалённых видео, статьях и книгах
-
-    try:
-        await bot.send_message(chat_id=ADMIN_CHAT_ID, text=message)
-        logging.info("Отчёт о публикациях и удалениях отправлен админу.")
-    except telegram.error.TelegramError as e:
-        logging.error(f"Ошибка при отправке отчёта админу: {e}\n{traceback.format_exc()}")
-
-# Функция для выполнения задач по расписанию
+# Function to run scheduled tasks
 def run_schedule():
     while True:
         schedule.run_pending()
         time.sleep(1)
 
-# Основная функция запуска бота и расписания
-async def main():
-    # Настраиваем расписание для выполнения функции скрапинга
-    schedule.every().day.at(schedule_settings['time']).do(lambda: send_materials_for_approval(scrape_python_materials()))
-    Thread(target=run_schedule).start()  # Запуск расписания в отдельном потоке
 
-    app = ApplicationBuilder().token(TOKEN).build()
+# Schedule tasks
+schedule.every().day.at(schedule_settings['time']).do(lambda: send_materials_for_approval(scrape_python_materials()))
+schedule.every().day.at(schedule_settings['time']).do(post_to_telegram)
 
-    # Обработчики команд
-    app.add_handler(CommandHandler("approve", approve))
-    app.add_handler(CommandHandler("reject", reject))
-    app.add_handler(CommandHandler("get_log", get_log_file))
-    app.add_handler(CommandHandler("set_publications", set_publications))
-    app.add_handler(CommandHandler("set_schedule", set_schedule))
-    app.add_handler(CommandHandler("report", report_publications_and_deletions))
+# Start the bot and the schedule thread
+if __name__ == "__main__":
+    application = ApplicationBuilder().token(TOKEN).build()
 
-    await app.run_polling()
+    # Add command handlers
+    application.add_handler(CommandHandler("approve", approve))
+    application.add_handler(CommandHandler("reject", reject))
+    application.add_handler(CommandHandler("get_log_file", get_log_file))
+    application.add_handler(CommandHandler("set_publications", set_publications))
 
-if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    # Start the bot
+    application.run_polling()
+
+    # Start the schedule in a separate thread
+    schedule_thread = Thread(target=run_schedule)
+    schedule_thread.start()
