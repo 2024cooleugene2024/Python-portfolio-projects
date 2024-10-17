@@ -60,8 +60,7 @@ def check_license(material_type, license_info):
 def scrape_python_materials():
     materials = {'videos': [], 'articles': [], 'books': []}
     youtube_api_key = 'AIzaSyAe3h7vlN7I4SiAQVPnqXUk_52HTmH0lSI'  # Замените на ваш API ключ
-    youtube_search_url = (f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults="
-                         f"{publications_settings['videos_per_day']}&q=python&key={youtube_api_key}")
+    youtube_search_url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults={publications_settings['videos_per_day']}&q=python&key={youtube_api_key}"
 
     try:
         response = requests.get(youtube_search_url)
@@ -95,7 +94,7 @@ def scrape_python_materials():
     except requests.RequestException as e:
         logging.error(f"Ошибка при запросе статей с Medium: {e}\n{traceback.format_exc()}")
 
-    book_url = ""  # Замените на реальный URL
+    book_url = "https://codelibrary.info/books/python"  # Замените на реальный URL
     try:
         response = requests.get(book_url)
         response.raise_for_status()
@@ -270,5 +269,5 @@ async def main():
     await app.run_polling()
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
