@@ -13,9 +13,9 @@ import traceback
 from datetime import datetime, timedelta
 
 # Бот токен и ID канала и админа
-TOKEN = '7819104454:AAHfjmUfOlDQg2a0dbwN6qP-l4zgZS46MSY'
-CHAT_ID = '@Community_Python'
-ADMIN_CHAT_ID = '@@cooleugene2012'
+TOKEN = 'Your token here'
+CHAT_ID = 'Your chat id here'
+ADMIN_CHAT_ID = 'Your admin chat id'
 
 # Настраиваем логирование
 LOG_FILE = 'bot_log.txt'
